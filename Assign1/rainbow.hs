@@ -29,3 +29,24 @@ takeLSD digits n = takeLSDHelper (reverse digits) n []
             | n == 0    = a
             | xs == []  = takeLSDHelper (0:[]) (n-1) (x:a)
             | otherwise = takeLSDHelper xs (n-1) (x:a)
+
+
+-- pwReduce :: Integer -> String
+-- pwReduce hash = map toLetter (takeLSD (convertBase hash nLetters) pwLength)
+
+
+rainbowTable :: Int -> [String] -> Map.Map Integer String
+rainbowTable 0 passes = Map.fromList $ map makeTuples passes
+    where 
+        makeTuples pass = (1726491528, pass)
+
+-- these following functions should replace the previous rainbowTable function once we have the pwHash and pwReduce functions
+
+-- finalHash :: Int -> String -> Integer
+-- finalHash 0 pass = pwHash pass
+-- finalHash n pass = finalHash (n-1) (pwReduce $ pwHash pass)
+
+-- rainbowTable n passes = Map.fromList $ map makeTuples passes 
+--     where 
+--         makeTuples pass = ((finalHash n pass), pass)
+
