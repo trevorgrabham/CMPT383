@@ -1,4 +1,4 @@
--- import RainbowAssign
+import RainbowAssign
 import System.Random
 import qualified Data.Map as Map
 
@@ -13,8 +13,11 @@ height = 1000           -- number of "rows" in the table
 filename = "table.txt"  -- filename to store the table
 -- ##################################################################
 
+
+
 -- the left padding of extra 0's is taken care of in the function that takes the n least significant digits
-convertBase hash base = convertBaseHelper hash base []
+convertBase :: Hash -> Int -> [Int]
+convertBase hash base = convertBaseHelper (fromEnum hash) base []
     where 
         convertBaseHelper hash base a
             -- hash == 0 is the terminating case for a positive hash, hash == -1 is the terminating case for a negative hash
@@ -22,7 +25,7 @@ convertBase hash base = convertBaseHelper hash base []
             | otherwise                  = convertBaseHelper (hash `div` base) base ((hash `mod` base) : a)
  
 
-
+takeLSD :: [Int] -> Int -> [Int]
 takeLSD digits n = takeLSDHelper (reverse digits) n []
     where 
         takeLSDHelper (x:xs) n a 
@@ -31,22 +34,15 @@ takeLSD digits n = takeLSDHelper (reverse digits) n []
             | otherwise = takeLSDHelper xs (n-1) (x:a)
 
 
--- pwReduce :: Integer -> String
--- pwReduce hash = map toLetter (takeLSD (convertBase hash nLetters) pwLength)
+pwReduce :: Hash -> Passwd
+pwReduce hash = map toLetter (takeLSD (convertBase hash nLetters) pwLength)
 
+finalHash :: Int -> Passwd -> Hash
+finalHash 0 pass = pwHash pass
+finalHash n pass = finalHash (n-1) (pwReduce $ pwHash pass)
 
-rainbowTable :: Int -> [String] -> Map.Map Integer String
-rainbowTable 0 passes = Map.fromList $ map makeTuples passes
+rainbowTable :: Int -> [Passwd] -> Map.Map Hash Passwd
+rainbowTable n passes = Map.fromList $ map makeTuples passes 
     where 
-        makeTuples pass = (1726491528, pass)
-
--- these following functions should replace the previous rainbowTable function once we have the pwHash and pwReduce functions
-
--- finalHash :: Int -> String -> Integer
--- finalHash 0 pass = pwHash pass
--- finalHash n pass = finalHash (n-1) (pwReduce $ pwHash pass)
-
--- rainbowTable n passes = Map.fromList $ map makeTuples passes 
---     where 
---         makeTuples pass = ((finalHash n pass), pass)
+        makeTuples pass = ((finalHash n pass), pass)
 
