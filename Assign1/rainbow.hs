@@ -46,3 +46,7 @@ rainbowTable n passes = Map.fromList $ map makeTuples passes
     where 
         makeTuples pass = ((finalHash n pass), pass)
 
+generateTable :: IO ()
+generateTable = do
+    table <- buildTable rainbowTable nLetters pwLength width height
+    writeTable table filename
