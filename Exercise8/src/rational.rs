@@ -1,21 +1,45 @@
 use std::fmt;
 
 fn gcd(a: i64, b: i64) -> i64 {
-    // TODO
+    // Euclidean Algorithm
+    if b == 0 {
+        if a >= 0 {
+            a
+        }
+        else {
+            -a
+        }
+    }
+    else {
+        gcd(b, a%b)
+    }
 }
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct Rational {
-    // TODO
+    pub n: i64,
+    pub d: i64,
 }
 
 impl Rational {
     pub fn new(n: i64, d: i64) -> Rational {
-        // TODO
+        Rational {
+            n: n,
+            d: d,
+        }
     }
-    // TODO: the reduce method
+    pub fn reduce(&mut self) {
+        let divisor = gcd(self.n, self.d);
+        self.n = self.n/divisor;
+        self.d = self.d/divisor;
+    }
 }
 
 impl From<i64> for Rational {
-    // TODO
+    fn from(n: i64) -> Rational {
+        Rational {
+            n: n,
+            d: 1,
+        }
+    }
 }
