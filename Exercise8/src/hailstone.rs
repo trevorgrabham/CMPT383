@@ -20,7 +20,7 @@ pub fn hailstone_sequence_prealloc(n: u64) -> Vec<u64> {
         m = hailstone(m);
         count += 1;
     }
-    let return_val: Vec<u64> = Vec::with_capacity(count);
+    let mut return_val: Vec<u64> = Vec::with_capacity(count);
     m = n;
     return_val.push(n);
     while m != 1 {
