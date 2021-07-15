@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cargo",
+			"subcommand": "build",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"label": "Rust: cargo build - Exercise8"
+		},
+		{
+			"label": "Build C/C++ Project",
+			"type": "cpp",
+			"sources": [
+			  "${fileDirname}/**/*.cc"
+			],
+			"output": "${workspaceFolder}/debug/${fileBasenameNoExtension}.exe",
+			"options": {
+			  "cwd": "${fileDirname}"
+			},
+			"group": "build"
+		  }
+	]
+}

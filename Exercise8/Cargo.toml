@@ -1,0 +1,17 @@
+[package]
+name = "exer8"
+version = "0.1.0"
+authors = []
+edition = "2018"
+
+[dependencies]
+
+[dev-dependencies]
+criterion = "~0.3"
+
+[dependencies.criterion]
+features = ['html_reports']
+
+[[bench]]
+name = "hailstone_benchmark"
+harness = false

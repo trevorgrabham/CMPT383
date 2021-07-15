@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat
 object ExerciseQuestions {
     def main(args: Array[String]) = {
         var i = 0
+        
         do {
             println("Which function would you like to test out?")
             println("(1) divisors")
