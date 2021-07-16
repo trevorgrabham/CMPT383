@@ -56,7 +56,9 @@ pub fn quicksort_partial<T: Copy + Ord>(v: &mut Vec<T>, left: usize, right: usiz
     }
     if left < right {
         let p = partition(v, left, right);
-        quicksort_partial(v, left, p-1);
+        if p > 0 {
+            quicksort_partial(v, left, p-1);
+        }
         quicksort_partial(v, p+1, right);
     }
 }
