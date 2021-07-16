@@ -1,0 +1,18 @@
+[package]
+name = "exer9"
+version = "0.1.0"
+authors = []
+edition = "2018"
+
+[dependencies]
+rand = "~0.8"
+
+[dev-dependencies]
+criterion = "~0.3"
+
+[dependencies.criterion]
+features = ['html_reports']
+
+[[bench]]
+name = "sort_benchmark"
+harness = false

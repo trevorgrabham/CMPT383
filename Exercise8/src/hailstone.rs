@@ -1,3 +1,9 @@
+/*
+    The prealloc version of the function, ran faster on average in all of the tests
+
+    Over all of the tests, the highest time for the prealloc version was still lower than the 
+    lowest time for the standard version. This was over 100 runs for each test, and over all 3 tests
+*/
 pub fn hailstone(n: u64) -> u64 {
     if n % 2 == 0 { n/2 } else { 3*n + 1 }
 }
