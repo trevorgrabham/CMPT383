@@ -49,7 +49,7 @@ impl From<i64> for Rational {
 
 impl From<Rational> for f64 {
     fn from(r: Rational) -> f64 {
-        r.n/r.d
+        r.n as f64/r.d
     }
 }
 
