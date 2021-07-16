@@ -53,8 +53,8 @@ impl From<Rational> for f64 {
     }
 }
 
-impl Display for Rational {
-    fn fmt(&self, f: &mut Formatter) -> Result {
+impl fmt::Display for Rational {
+    fn fmt(&self, f: &mut fmt::Formatter) -> Result {
         write!(f, "{}/{}", self.n, self.d)
     }
 }
