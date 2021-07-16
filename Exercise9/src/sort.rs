@@ -62,7 +62,7 @@ pub fn quicksort_partial<T: Copy + Ord>(v: &mut Vec<T>, left: usize, right: usiz
 }
 
 pub fn quicksort<T: Copy + Ord>(v: &mut Vec<T>) {
-    quicksort_partial(v, 0, v.length());
+    quicksort_partial(v, 0, v.len());
 }
 
 
