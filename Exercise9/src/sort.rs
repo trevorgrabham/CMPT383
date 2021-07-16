@@ -55,11 +55,15 @@ pub fn quicksort_partial<T: Copy + Ord>(v: &mut Vec<T>, left: usize, right: usiz
         insertion_sort(v, left, right);
     }
     if left < right {
-        let p = partition(v, left, right);
-        if p > 0 {
-            quicksort_partial(v, left, p-1);
+        if right-left < INSERTION_SORT_CUTOFF {
+            insertion_sort(v, left, right);
+        } else {
+            let p = partition(v, left, right);
+            if p > 0 {
+                quicksort_partial(v, left, p-1);
+            }
+            quicksort_partial(v, p+1, right);
         }
-        quicksort_partial(v, p+1, right);
     }
 }
 
