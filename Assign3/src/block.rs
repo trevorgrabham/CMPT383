@@ -198,4 +198,4 @@ impl Task for MiningTask {
 
 */
 
-// TODO: stop my hashing function from being circular, get mining working
+// TODO: stop my hashing function from being circular, get mining working, tests
