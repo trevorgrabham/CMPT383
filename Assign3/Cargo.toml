@@ -1,0 +1,10 @@
+[package]
+name = "a3"
+version = "0.1.0"
+authors = []
+edition = "2018"
+
+[dependencies]
+sha2 = "~0.9"
+digest = "~0.9"
+spmc = "~0.3"
