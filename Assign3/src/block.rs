@@ -19,7 +19,7 @@ pub struct Block {
 impl Block {
     pub fn initial(difficulty: u8) -> Block {
         // TODO: create and return a new initial block
-        let mut prev_hash = GenericArray::default();
+        let prev_hash = GenericArray::default();
         for mut entry in prev_hash {
             entry = 0u8;
         }
@@ -46,10 +46,10 @@ impl Block {
 
     pub fn hash_string_for_proof(&self, proof: u64) -> String {
         // TODO: return the hash string this block would have if we set the proof to `proof`.
-        let test_hash = self.hash_for_proof(proof);
-        let mut output = String::new();
-        write!(&mut output, "{:02x}", test_hash).unwrap();
-        output
+        let mut hash_hex = String::new();
+        write!(&mut hash_hex, "{:02x}", self.prev_hash).unwrap();
+        let data = format!("{}:{}:{}:{}:{}",hash_hex,self.generation,self.difficulty,self.data,proof);
+        return data;
     }
 
     pub fn hash_string(&self) -> String {
@@ -67,7 +67,13 @@ impl Block {
             prev_hash: self.prev_hash,
             proof: Some(proof),
         };
-        test_block.hash()
+        let mut hash_hex = String::new();
+        write!(&mut hash_hex, "{:02x}", test_block.prev_hash).unwrap();
+        let data = format!("{}:{}:{}:{}:{}",hash_hex,test_block.generation,test_block.difficulty,test_block.data,proof);
+        let mut hasher = Sha256::new();
+        hasher.update(data);
+        let hash = hasher.finalize();
+        return hash;
     }
 
     pub fn hash(&self) -> Hash {
@@ -115,41 +121,42 @@ impl Block {
         self.proof = Some(p);
     }
 
-    // pub fn mine_range(self: &Block, workers: usize, start: u64, end: u64, chunks: u64) -> u64 {
-    //     // TODO: with `workers` threads, check proof values in the given range, breaking up
-	// // into `chunks` tasks in a work queue. Return the first valid proof found.
-    //     // HINTS:
-    //     // - Create and use a queue::WorkQueue.
-    //     // - Use sync::Arc to wrap a clone of self for sharing.
-    //     let arc = sync::Arc::new(self);
-    //     let q = WorkQueue::new(workers);
-    //     let proof: u64;
-    //     let chunk_size = (end-start)/chunks;
+    pub fn mine_range(self: &Block, workers: usize, start: u64, end: u64, chunks: u64) -> u64 {
+        // TODO: with `workers` threads, check proof values in the given range, breaking up
+	// into `chunks` tasks in a work queue. Return the first valid proof found.
+        // HINTS:
+        // - Create and use a queue::WorkQueue.
+        // - Use sync::Arc to wrap a clone of self for sharing.
+        let arc = sync::Arc::new(self.clone());
+        let mut q = WorkQueue::new(workers);
+        let chunk_size = if end-start < chunks {1} else {(end-start)/chunks};
+        let max_i = if end-start < chunks {end-start} else {chunks};
 
-    //     for i in 0..chunks-1 {
-    //         q.enqueue(MiningTask::new(sync::Arc::clone(&arc),i*chunk_size, (i+1)*chunk_size-1)).unwrap();
-    //     }
+        for i in 0..max_i-1 {
+            q.enqueue(MiningTask::new(sync::Arc::clone(&arc),i*chunk_size, ((i+1)*chunk_size)-1)).unwrap();
+        }
+        q.enqueue(MiningTask::new(sync::Arc::clone(&arc),chunk_size*(max_i-1), end)).unwrap();
 
-    //     loop {
-    //         let rec = q.recv();
-    //         if self.is_valid_for_proof(rec) {
-    //             q.shutdown();
-    //             return rec;
-    //         }
-    //     }
+        loop {
+            let rec = q.recv();
+            if self.is_valid_for_proof(rec) {
+                q.shutdown();
+                return rec;
+            }
+        }
 
-    // }
+    }
 
-    // pub fn mine_for_proof(self: &Block, workers: usize) -> u64 {
-    //     let range_start: u64 = 0;
-    //     let range_end: u64 = 8 * (1 << self.difficulty); // 8 * 2^(bits that must be zero)
-    //     let chunks: u64 = 2345;
-    //     self.mine_range(workers, range_start, range_end, chunks)
-    // }
+    pub fn mine_for_proof(self: &Block, workers: usize) -> u64 {
+        let range_start: u64 = 0;
+        let range_end: u64 = 8 * (1 << self.difficulty); // 8 * 2^(bits that must be zero)
+        let chunks: u64 = 2345;
+        self.mine_range(workers, range_start, range_end, chunks)
+    }
 
-    // pub fn mine(self: &mut Block, workers: usize) {
-    //     self.proof = Some(self.mine_for_proof(workers));
-    // }
+    pub fn mine(self: &mut Block, workers: usize) {
+        self.proof = Some(self.mine_for_proof(workers));
+    }
 }
 
 struct MiningTask {
