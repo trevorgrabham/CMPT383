@@ -1,7 +1,7 @@
 #[macro_use]
 extern crate cpython; 
 
-use cpython::{Python, PyResult, py_module_initializer};
+use cpython::{Python, PyResult, py_module_initializer, py_fn};
 
 
 py_module_initializer!(rust_funcs, |py,m| {
