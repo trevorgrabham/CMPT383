@@ -2,10 +2,10 @@ from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, current_user, logout_user, login_required
 from itertools import groupby
 from operator import attrgetter
-from finalproject import app, bcrypt, db, ffi
+from finalproject import app, bcrypt, db
 from finalproject.forms import LoginForm, SignUpForm
 from finalproject.models import User, Exercise
-
+import finalproject.rust_funcs
 
 
 @app.route("/")
@@ -98,6 +98,5 @@ def logout():
 
 @app.route("/linkTest")
 def linkTest():
-    C = ffi.dlopen("../rust-funcs/target/debug/rust_funcs_ffi.dll")
-    flash(C.double(9), 'success')
+    flash(finalproject.rust_funcs.double(9), 'success')
     return redirect(url_for('home'))

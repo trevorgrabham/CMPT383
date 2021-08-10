@@ -1,0 +1,1 @@
+{"rustc":16470491117271997032,"features":"[\"default\", \"extension-module\", \"python3-sys\"]","target":10429514197457385088,"profile":4339006351771724982,"path":16918866268455972315,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"release/.fingerprint/cpython-991be397ba6e82f4/dep-build-script-build-script-build"}}],"rustflags":[],"metadata":6743544725126780356,"config":0}
