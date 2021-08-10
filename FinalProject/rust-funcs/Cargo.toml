@@ -1,0 +1,11 @@
+[package]
+name = "rust-funcs"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+name = "rust_funcs"
+crate-type = ["dylib"]
+
+[dependencies]
+cpython = { git = "https://github.com/dgrunwald/rust-cpython"}

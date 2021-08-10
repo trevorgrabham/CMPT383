@@ -1,7 +1,7 @@
 {% extends "defaultLayout.html" %}
 
 {% block content %}
-    {% for date in exerciseList %}
+    {% for exercise in exerciseList %}
         {{exercise.name}}
             <br>
     {% endfor %}

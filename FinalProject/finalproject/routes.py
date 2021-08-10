@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, current_user, logout_user, login_required
 from itertools import groupby
 from operator import attrgetter
-from finalproject import app, bcrypt, db
+from finalproject import app, bcrypt, db, ffi
 from finalproject.forms import LoginForm, SignUpForm
 from finalproject.models import User, Exercise
 
@@ -64,6 +64,7 @@ def account():
 def exercises():
     exerciseList = db.session.query(Exercise.name).\
     filter(Exercise.userId==current_user.id).\
+    order_by(Exercise.name).\
     distinct()
     return render_template('exercises.html', title="Exercises", exerciseList=exerciseList)
 
@@ -90,4 +91,13 @@ def workout():
 def logout():
     flash('Successfully logged out ' + current_user.username, 'success')
     logout_user()
+    return redirect(url_for('home'))
+
+
+
+
+@app.route("/linkTest")
+def linkTest():
+    C = ffi.dlopen("../rust-funcs/target/debug/rust_funcs_ffi.dll")
+    flash(C.double(9), 'success')
     return redirect(url_for('home'))
