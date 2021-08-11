@@ -5,7 +5,6 @@ from operator import attrgetter
 from finalproject import app, bcrypt, db
 from finalproject.forms import LoginForm, SignUpForm
 from finalproject.models import User, Exercise
-import finalproject.rust_funcs
 
 
 

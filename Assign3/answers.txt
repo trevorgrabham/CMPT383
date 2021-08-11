@@ -1,0 +1,8 @@
+1. The Output type is necessary because we need to know that all of our tasks that are 
+    being completed can be handled in the same fashion once they are returned. Otherwise, 
+    we could have multiple tasks returning completely different results
+2. We cannot use iter, because workers was not made mutable. Vec drain creates 
+    a new object that allows us to remove the values from the workers without this
+3. we need a clone, because we need to be able to move a memory reference from whatever 
+    object will end up being the data for our Arc, so we pass a clone instead, since we 
+    only need to read from the block, not update it
