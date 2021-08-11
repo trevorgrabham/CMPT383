@@ -94,3 +94,22 @@ def logout():
 
 
 
+@app.route("/test")
+def test():
+    testVar = request.args.get('testVar', 1, type=int)
+    flash('testVar: ' + str(testVar), 'success')
+    return redirect(url_for('home'))
+
+
+@app.route("/addWorkout")
+def addWorkout():
+    return render_template('addWorkout.html', title='Add Workout')
+
+@app.route("/saveWorkout", methods=['GET', 'POST'])
+def saveWorkout():
+    if request.method == 'POST':
+        exer = Exercise(userId=current_user.id,name=request.get_json().get('name'), reps=request.get_json().get('reps'), weight=request.get_json().get('weight'), position=request.get_json().get('pos'))
+        db.session.add(exer)
+        db.session.commit()
+        return "Successfully added workout to database"
+    return redirect(url_for('home'))

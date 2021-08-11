@@ -1,6 +1,8 @@
 {% extends "defaultLayout.html" %}
 
 {% block content %}
+    <button id="addWorkoutBtn">Add Workout</button>
+    <div class="addWorkoutDiv"></div>
     {%for i in range(workouts| length)%}
         <h1>{{workouts[i][0][0].date}}</h1>
         {%for j in range(workouts[i]| length)%}
@@ -12,5 +14,25 @@
         {%endfor%}
         <br>
     {%endfor%}
+    <a id="testA" href="">Test me</a>
     <!-- {{workouts}} -->
+
+    <script>
+        var addWorkoutBtn = document.getElementById("addWorkoutBtn");
+        var addWorkoutDiv = document.getElementById("addWorkoutDiv");
+
+        var addExerciseBtn = document.createElement("btn")
+        addExerciseBtn.setAttribute('id', 'addExerciseBtn');
+        addExerciseBtn.addEventListener('click', function(){
+            var name 
+            var weight
+            var reps
+        })
+
+        var addSetBtn = document.createElement("btn")
+        addSetBtn.setAttribute('id', 'addExerciseBtn');
+        addWorkoutBtn.addEventListener('click', function() {
+
+        });
+    </script>
 {% endblock content %}

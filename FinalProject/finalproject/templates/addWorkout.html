@@ -1,0 +1,61 @@
+{% extends "defaultLayout.html" %}
+{% block content %}
+<div id="container">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Name: </span>
+        </div>
+        <input id="nameInput" type="text" class="form-control" placeholder="Exercise name" aria-label="Name" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Weight: </span>
+        </div>
+        <input id="weightInput" type="text" class="form-control" placeholder="0 if bodyweight" aria-label="Weight" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Reps: </span>
+        </div>
+        <input id="repInput" type="text" class="form-control" placeholder="" aria-label="Reps" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="row ml-1 mb-3">
+        <button class="btn btn-outline-info mr-3">Add set</button>
+        <button class="btn btn-outline-info">Add exercise</button>
+    </div>
+    <div class="row ml-1">
+        <button class="btn btn-outline-info" onclick="getValues()">Finish Workout</button>
+    </div>
+</div>
+
+
+<script>
+    function getValues(){
+        var name = document.getElementById("nameInput").value;
+        var weight = document.getElementById("weightInput").value;
+        var reps = document.getElementById("repInput").value;
+        var exercise = {
+            'name': name,
+            'weight': weight,
+            'reps': reps,
+            'pos': 1,
+        }
+
+        $.ajax({
+            url: Flask.url_for('saveWorkout'),
+            type: 'POST',
+            data: JSON.stringify(exercise),
+            dataType: 'json',
+            contentType: 'application/json',
+        })
+        .done(function(result){
+            console.log(result);
+        });
+    }
+</script>
+    
+    
+{% endblock content %}
