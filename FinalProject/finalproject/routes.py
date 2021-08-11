@@ -7,7 +7,6 @@ from finalproject.forms import LoginForm, SignUpForm
 from finalproject.models import User, Exercise
 
 
-
 @app.route("/")
 def home():
     return render_template('index.html')
@@ -95,8 +94,3 @@ def logout():
 
 
 
-
-@app.route("/linkTest")
-def linkTest():
-    flash(rust_funcs.double(9), 'success')
-    return redirect(url_for('home'))
