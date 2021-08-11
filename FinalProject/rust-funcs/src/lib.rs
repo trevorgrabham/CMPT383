@@ -1,14 +1,23 @@
-#[macro_use]
-extern crate cpython; 
+#[repr(C)]
+pub struct Buffer {
+    data: *mut i32,
+    len: usize,
+}
 
-use cpython::{Python, PyResult, py_module_initializer, py_fn};
+#[no_mangle]
+pub extern "C" fn double(x: i32) -> i32 {
+    x*2
+}
 
+#[no_mangle]
+pub extern "C" fn sum_arr(arr: Buffer) -> i32 {
+    let mut res: i32 = 0;
+    let array = unsafe {
+        std::slice::from_raw_parts(arr.data, arr.len)
+    };
 
-py_module_initializer!(rust_funcs, |py,m| {
-    m.add(py, "double", py_fn!(py, double(x: i32)))?;
-    Ok(())
-});
-
-fn double(_py: Python, x: i32) -> PyResult<i32> {
-    Ok(x*2)
+    for elem in array {        
+        res += elem;
+    }
+    res
 }

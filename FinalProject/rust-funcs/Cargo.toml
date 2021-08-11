@@ -4,9 +4,5 @@ version = "0.1.0"
 edition = "2018"
 
 [lib]
-name = "rust_funcs"
-crate-type = ["cdylib"]
-
-[dependencies.cpython]
-version = "0.6"
-features = ["extension-module"]
+name = "rust_funcs_ffi"
+crate-type = ["dylib"]
