@@ -1,0 +1,16 @@
+{% extends "defaultLayout.html" %}
+
+{% block content %}
+    {%for i in range(workouts| length)%}
+        <h1>{{workouts[i][0][0].date}}</h1>
+        {%for j in range(workouts[i]| length)%}
+            <h3>{{workouts[i][j][0].name}}</h3>
+            {%for k in range(workouts[i][j]| length)%}
+                <h3>{{workouts[i][j][k].reps}}, {{workouts[i][j][k].weight}}</h3>
+                <br>
+            {%endfor%}
+        {%endfor%}
+        <br>
+    {%endfor%}
+    <!-- {{workouts}} -->
+{% endblock content %}
