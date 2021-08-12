@@ -1,59 +1,231 @@
 {% extends "defaultLayout.html" %}
 {% block content %}
-<div id="container">
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Name: </span>
-        </div>
-        <input id="nameInput" type="text" class="form-control" placeholder="Exercise name" aria-label="Name" aria-describedby="basic-addon1">
-    </div>
+<div class="container">
+    <div id="workout">
+        <div id='exercise'>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Name: </span>
+                </div>
+                <input id="nameInput" type="text" class="form-control" placeholder="Exercise name" aria-label="Name" aria-describedby="basic-addon1">
+            </div>
 
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Weight: </span>
-        </div>
-        <input id="weightInput" type="text" class="form-control" placeholder="0 if bodyweight" aria-label="Weight" aria-describedby="basic-addon1">
-    </div>
+            <div class="suggestions row" style="display: none;">
+            </div>
 
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Reps: </span>
-        </div>
-        <input id="repInput" type="text" class="form-control" placeholder="" aria-label="Reps" aria-describedby="basic-addon1">
-    </div>
+            <div id="set1">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Weight: </span>
+                    </div>
+                    <input id="weightInput" type="text" class="form-control" placeholder="0 if bodyweight" aria-label="Weight" aria-describedby="basic-addon1">
+                </div>
 
-    <div class="row ml-1 mb-3">
-        <button class="btn btn-outline-info mr-3">Add set</button>
-        <button class="btn btn-outline-info">Add exercise</button>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Reps: </span>
+                    </div>
+                    <input id="repsInput" type="text" class="form-control" placeholder="" aria-label="Reps" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <button id="setBtn" class="btn btn-outline-info mb-3">Add set</button>
+        </div>
+        <button id="exerBtn" class="btn btn-outline-info mb-3">Add exercise</button>
     </div>
-    <div class="row ml-1">
-        <button class="btn btn-outline-info" onclick="getValues()">Finish Workout</button>
-    </div>
+    <button class="btn btn-outline-info mb-3" onclick="getExercises()">Finish Workout</button>
 </div>
 
 
 <script>
-    function getValues(){
-        var name = document.getElementById("nameInput").value;
-        var weight = document.getElementById("weightInput").value;
-        var reps = document.getElementById("repInput").value;
-        var exercise = {
-            'name': name,
-            'weight': weight,
-            'reps': reps,
-            'pos': 1,
+    class Exercise {
+        constructor(nameField, weightField, repsField, pos){
+            this.nameField = nameField;
+            this.weightField = weightField;
+            this.repsField = repsField;
+            this.pos = pos;
         }
+        getValues() {
+            this.name = this.nameField.value.toLowerCase();
+            this.weight = this.weightField.value;
+            this.reps = this.repsField.value;
+        }
+    }
+    document.getElementById('setBtn').onclick = addSet;
+    document.getElementById('exerBtn').onclick = addExercise;
+    document.getElementById('nameInput').oninput = generateSuggestions;
+    var exercises = [];
+    exercises.push(new Exercise(document.getElementById('nameInput'), document.getElementById('weightInput'), document.getElementById('repsInput'),1));
+    var suggestions = [];
 
-        $.ajax({
-            url: Flask.url_for('saveWorkout'),
-            type: 'POST',
-            data: JSON.stringify(exercise),
-            dataType: 'json',
-            contentType: 'application/json',
-        })
-        .done(function(result){
-            console.log(result);
-        });
+    $.ajax({
+        url: Flask.url_for('getSuggestions'),
+        type: 'GET',
+    })
+    .done(function(result){
+        for(var i=0;i<result['data'].length;i++){
+            suggestions.push(result['data'][i]);
+        }
+    });
+    
+    function getExercises(){
+        for(var i=0;i<exercises.length;i++){
+            exercises[i].getValues();
+            if(exercises[i].name != '' && exercises[i].weight != '' && exercises[i].reps != ''){
+                $.ajax({
+                url: Flask.url_for('saveWorkout'),
+                type: 'POST',
+                data: JSON.stringify(exercises[i]),
+                dataType: 'json',
+                contentType: 'application/json',
+                })
+                .done(function(result){
+                    delete exercises[i];
+                });
+            }
+        }
+        window.location.replace(Flask.url_for('addWorkout'));
+    }
+
+
+    function createWeightDiv(){
+        var weightInputDiv = document.createElement('div');
+        weightInputDiv.className = 'input-group mb-3';
+        var weightInputChild = document.createElement('div');
+        weightInputChild.className = 'input-group-prepend';
+        var childSpan = document.createElement('span');
+        childSpan.className = 'input-group-text';
+        childSpan.innerHTML = 'Weight: ';
+        weightInputChild.appendChild(childSpan);
+        weightInputDiv.appendChild(weightInputChild);
+        weightInputChild = document.createElement('input');
+        weightInputChild.className = 'form-control';
+        weightInputChild.placeholder = '0 if bodyweight';
+        weightInputDiv.appendChild(weightInputChild);
+        return weightInputDiv;
+    }
+
+    function createRepDiv(){
+        var repInputDiv = document.createElement('div');
+        repInputDiv.className = 'input-group mb-3';
+        var repInputChild = document.createElement('div');
+        repInputChild.className = 'input-group-prepend';
+        var childSpan = document.createElement('span');
+        childSpan.className = 'input-group-text';
+        childSpan.innerHTML = 'Reps: ';
+        repInputChild.appendChild(childSpan);
+        repInputDiv.appendChild(repInputChild);
+        repInputChild = document.createElement('input');
+        repInputChild.className = 'form-control';
+        repInputDiv.appendChild(repInputChild);
+        return repInputDiv;
+    }
+
+    function createNameDiv(){
+        var nameInputDiv = document.createElement('div');
+        nameInputDiv.className = 'input-group mb-3';
+        var nameInputChild = document.createElement('div');
+        nameInputChild.className = 'input-group-prepend';
+        var childSpan = document.createElement('span');
+        childSpan.className = 'input-group-text';
+        childSpan.innerHTML = 'Name: ';
+        nameInputChild.appendChild(childSpan);
+        nameInputDiv.appendChild(nameInputChild);
+        nameInputChild = document.createElement('input');
+        nameInputChild.className = 'form-control';
+        nameInputChild.placeholder = 'Exercise Name';
+        nameInputDiv.appendChild(nameInputChild);
+        return nameInputDiv;
+    }
+
+    function createSuggestionBox(){
+        var div = document.createElement('div');
+        div.className = 'row';
+        div.style = 'display: none;';
+        var ul = document.createElement('ul');
+        ul.className = 'suggestions';
+        div.appendChild(ul);
+        return div;
+    }
+
+
+    function addSet(){
+        var pos = parseInt(this.previousElementSibling.id[3]) + 1;
+        var setDiv = document.createElement('div');
+        setDiv.id = 'set' + pos;
+        setDiv.appendChild(createWeightDiv());
+        setDiv.appendChild(createRepDiv());
+        var exerciseContainer = this.parentElement;
+        exerciseContainer.appendChild(setDiv);
+        var exer = new Exercise(exerciseContainer.children[0].children[1], setDiv.children[0].children[1],setDiv.children[1].children[1],pos);
+        exercises.push(exer);
+        var btn = document.createElement('btn');
+        btn.innerHTML = "Add set";
+        btn.className = 'btn btn-outline-info mb-3';
+        btn.onclick = addSet;
+        exerciseContainer.appendChild(btn);
+        this.remove();
+    }
+
+
+    function addExercise(){
+        var workoutDiv = this.parentElement;
+        var exerciseDiv = document.createElement('div');
+        var setDiv = document.createElement('div');
+        setDiv.id = 'set1';
+        setDiv.appendChild(createWeightDiv());
+        setDiv.appendChild(createRepDiv());
+        var btn = document.createElement('btn');
+        btn.innerHTML = "Add set";
+        btn.className = 'btn btn-outline-info mb-3';
+        btn.onclick = addSet;
+        var exerBtn = document.createElement('btn');
+        exerBtn.innerHTML = "Add exercise";
+        exerBtn.className = 'btn btn-outline-info mb-3';
+        exerBtn.onclick = addExercise;
+        var nameDiv = createNameDiv();
+        nameDiv.oninput = generateSuggestions;
+        exerciseDiv.appendChild(nameDiv);
+        exerciseDiv.appendChild(createSuggestionBox());
+        exerciseDiv.appendChild(setDiv);
+        exerciseDiv.appendChild(btn);
+        workoutDiv.appendChild(exerciseDiv);
+        workoutDiv.appendChild(exerBtn);
+        exercises.push(new Exercise(exerciseDiv.firstChild.children[1], setDiv.children[0].children[1], setDiv.children[1].children[1], 1));
+        this.remove();
+    }
+
+    function generateSuggestions(){
+        var sugDiv = this.parentElement.nextElementSibling;
+        sugDiv.style = 'display: block;'
+        if(sugDiv.children){
+            for(var i=sugDiv.children.length-1;i>=0;i--){
+                console.log('removing child ' + sugDiv.children[i].innerHTML);
+                sugDiv.children[i].remove();
+            }
+        }
+        var typed = this.value;
+        console.log(typed);
+        for(var i=0;i<suggestions.length;i++){
+            if(typed.length != 0 && suggestions[i].substr(0,typed.length) == typed.toLowerCase()){
+                var item = document.createElement('div');
+                item.className = 'row'
+                item.onclick = suggestionClicked;
+                item.innerHTML = suggestions[i];
+                sugDiv.appendChild(item);
+            }
+        }
+    }
+
+    function suggestionClicked(){
+        var value = this.innerHTML;
+        this.parentElement.previousElementSibling.children[1].value = value;
+        this.parentElement.style = 'display: none;';
+        for(var i=0;i<this.parentElement.children.length;i++){
+            if(this.parentElement.children[i] != this){
+                this.parentElement.children[i].remove();
+            }
+        }
+        this.remove();
     }
 </script>
     

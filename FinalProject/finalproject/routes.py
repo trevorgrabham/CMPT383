@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
 from itertools import groupby
 from operator import attrgetter
@@ -72,10 +72,9 @@ def exercises():
 @app.route("/workout")
 @login_required
 def workout():
-    workoutList = db.session.\
-    query(Exercise.name, Exercise.reps, Exercise.weight, Exercise.position, Exercise.date).\
-    filter(Exercise.userId==current_user.id).\
-    order_by(Exercise.date.desc()).\
+    workoutList = Exercise.query.\
+    filter_by(userId=current_user.id).\
+    order_by(Exercise.date.desc(), Exercise.name.desc(), Exercise.position).\
     all()
     workouts = [list(g) for k, g in groupby(workoutList, attrgetter('date'))]
     workoutList = []
@@ -94,16 +93,13 @@ def logout():
 
 
 
-@app.route("/test")
-def test():
-    testVar = request.args.get('testVar', 1, type=int)
-    flash('testVar: ' + str(testVar), 'success')
-    return redirect(url_for('home'))
-
 
 @app.route("/addWorkout")
 def addWorkout():
     return render_template('addWorkout.html', title='Add Workout')
+
+
+
 
 @app.route("/saveWorkout", methods=['GET', 'POST'])
 def saveWorkout():
@@ -112,4 +108,16 @@ def saveWorkout():
         db.session.add(exer)
         db.session.commit()
         return "Successfully added workout to database"
-    return redirect(url_for('home'))
+    return redirect(url_for('workout'))
+
+
+@app.route("/getSuggestions")
+def getSuggestions():
+    res = db.session.query(Exercise.name).\
+    filter(Exercise.userId==current_user.id).\
+    distinct().\
+    all()
+    suggestions = []
+    for (x,) in res:
+        suggestions.append(x)
+    return jsonify(data=suggestions)

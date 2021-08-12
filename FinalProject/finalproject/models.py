@@ -27,6 +27,6 @@ class Exercise(db.Model, UserMixin):
 
     def __repr__(self):
         if self.weight > 0:
-            return 'Exercise(' + self.name + ', ' + str(self.reps) + ', ' + str(self.weight) + ', ' + self.date + ")"
+            return 'Exercise(' + self.name + ', ' + str(self.reps) + ', ' + str(self.weight) + ', ' + self.date.strftime("%x") + ")"
         else:
-            return 'Exercise(' + self.name + ', ' + str(self.reps) + ', body weight, ' + self.date + ")"
+            return 'Exercise(' + self.name + ', ' + str(self.reps) + ', body weight, ' + self.date.strftime("%x") + ")"
