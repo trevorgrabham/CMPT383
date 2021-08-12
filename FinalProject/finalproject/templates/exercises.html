@@ -2,7 +2,9 @@
 
 {% block content %}
     {% for exercise in exerciseList %}
-        {{exercise.name}}
-            <br>
+        <a class="row btn btn-outline-info mb-3" href="{{url_for('display')}}{{'?name='}}{{exercise.name}}">
+            {{exercise.name}}
+        </a>
+        <br>
     {% endfor %}
 {% endblock content %}

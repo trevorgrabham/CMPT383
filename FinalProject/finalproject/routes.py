@@ -5,6 +5,7 @@ from operator import attrgetter
 from finalproject import app, bcrypt, db
 from finalproject.forms import LoginForm, SignUpForm
 from finalproject.models import User, Exercise
+import finalproject.c_funcs as c_funcs
 
 
 @app.route("/")
@@ -121,3 +122,20 @@ def getSuggestions():
     for (x,) in res:
         suggestions.append(x)
     return jsonify(data=suggestions)
+
+
+
+@app.route("/display")
+def display():
+    title = request.args.get('name')
+    res = db.session.query(Exercise).\
+    filter(Exercise.userId==current_user.id, Exercise.name == title).\
+    order_by(Exercise.date.desc()).\
+    all()
+
+    days = [list(g) for k, g in groupby(res, attrgetter('date'))]
+    return render_template('display.html', title=title, days=days)
+
+@app.route("/test")
+def test():
+    return render_template('index.html', title=c_funcs.add(1,2))

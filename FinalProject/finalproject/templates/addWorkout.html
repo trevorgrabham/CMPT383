@@ -131,6 +131,7 @@
         nameInputChild.appendChild(childSpan);
         nameInputDiv.appendChild(nameInputChild);
         nameInputChild = document.createElement('input');
+        nameInputChild.oninput = generateSuggestions;
         nameInputChild.className = 'form-control';
         nameInputChild.placeholder = 'Exercise Name';
         nameInputDiv.appendChild(nameInputChild);
@@ -139,11 +140,8 @@
 
     function createSuggestionBox(){
         var div = document.createElement('div');
-        div.className = 'row';
+        div.className = 'suggestions row';
         div.style = 'display: none;';
-        var ul = document.createElement('ul');
-        ul.className = 'suggestions';
-        div.appendChild(ul);
         return div;
     }
 
@@ -183,7 +181,6 @@
         exerBtn.className = 'btn btn-outline-info mb-3';
         exerBtn.onclick = addExercise;
         var nameDiv = createNameDiv();
-        nameDiv.oninput = generateSuggestions;
         exerciseDiv.appendChild(nameDiv);
         exerciseDiv.appendChild(createSuggestionBox());
         exerciseDiv.appendChild(setDiv);

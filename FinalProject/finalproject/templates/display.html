@@ -1,0 +1,21 @@
+{% extends "defaultLayout.html" %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <br><br><br><br><br>
+    <h2>Your history</h2>
+    <br><br>
+    {% for day in days %}
+        <h4>{{day[0].date}}</h4>
+        {% for exercise in day %}
+            <div>
+                {% if exercise.weight == 0 %}
+                <h5>bodyweight x {{exercise.reps}}</h5>
+                {% else %}
+                    <h5>{{exercise.weight}}lbs x {{exercise.reps}}</h5>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <br>
+    {% endfor %}
+{% endblock content %}

@@ -4,14 +4,19 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/tgrabham/sfuhome/CMPT383/FinalProject/c_funcs.cpp" "/home/tgrabham/sfuhome/CMPT383/FinalProject/build/CMakeFiles/c_funcs.dir/c_funcs.cpp.o"
+  "/mnt/c/Users/treva/Desktop/SFU classes/CMPT383/FinalProject/c_funcs.cpp" "/mnt/c/Users/treva/Desktop/SFU classes/CMPT383/FinalProject/build/CMakeFiles/c_funcs.dir/c_funcs.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_CXX
+  "c_funcs_EXPORTS"
+  )
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../pybind11/include"
-  "/opt/anaconda3/include/python3.7m"
+  "/usr/include/python3.8"
   )
 
 # Targets to which this target links.
