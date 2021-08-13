@@ -220,21 +220,23 @@ optional
 variant
 -
 
-/home/tgrabham/sfuhome/CMPT383/FinalProject/c_funcs.cpp
+/mnt/c/Users/treva/Desktop/SFU classes/CMPT383/FinalProject/c_funcs.cpp
 pybind11/pybind11.h
 -
 pybind11/stl.h
 -
 cmath
 -
+iostream
+-
 
-/opt/anaconda3/include/python3.7m/Python.h
+/usr/include/python3.8/Python.h
 patchlevel.h
-/opt/anaconda3/include/python3.7m/patchlevel.h
+/usr/include/python3.8/patchlevel.h
 pyconfig.h
-/opt/anaconda3/include/python3.7m/pyconfig.h
+/usr/include/python3.8/pyconfig.h
 pymacconfig.h
-/opt/anaconda3/include/python3.7m/pymacconfig.h
+/usr/include/python3.8/pymacconfig.h
 limits.h
 -
 stdio.h
@@ -254,277 +256,393 @@ stddef.h
 assert.h
 -
 pyport.h
-/opt/anaconda3/include/python3.7m/pyport.h
+/usr/include/python3.8/pyport.h
 pymacro.h
-/opt/anaconda3/include/python3.7m/pymacro.h
-pyatomic.h
-/opt/anaconda3/include/python3.7m/pyatomic.h
+/usr/include/python3.8/pymacro.h
 pymath.h
-/opt/anaconda3/include/python3.7m/pymath.h
+/usr/include/python3.8/pymath.h
 pytime.h
-/opt/anaconda3/include/python3.7m/pytime.h
+/usr/include/python3.8/pytime.h
 pymem.h
-/opt/anaconda3/include/python3.7m/pymem.h
+/usr/include/python3.8/pymem.h
 object.h
-/opt/anaconda3/include/python3.7m/object.h
+/usr/include/python3.8/object.h
 objimpl.h
-/opt/anaconda3/include/python3.7m/objimpl.h
+/usr/include/python3.8/objimpl.h
 typeslots.h
-/opt/anaconda3/include/python3.7m/typeslots.h
+/usr/include/python3.8/typeslots.h
 pyhash.h
-/opt/anaconda3/include/python3.7m/pyhash.h
+/usr/include/python3.8/pyhash.h
 pydebug.h
-/opt/anaconda3/include/python3.7m/pydebug.h
+/usr/include/python3.8/pydebug.h
 bytearrayobject.h
-/opt/anaconda3/include/python3.7m/bytearrayobject.h
+/usr/include/python3.8/bytearrayobject.h
 bytesobject.h
-/opt/anaconda3/include/python3.7m/bytesobject.h
+/usr/include/python3.8/bytesobject.h
 unicodeobject.h
-/opt/anaconda3/include/python3.7m/unicodeobject.h
+/usr/include/python3.8/unicodeobject.h
 longobject.h
-/opt/anaconda3/include/python3.7m/longobject.h
+/usr/include/python3.8/longobject.h
 longintrepr.h
-/opt/anaconda3/include/python3.7m/longintrepr.h
+/usr/include/python3.8/longintrepr.h
 boolobject.h
-/opt/anaconda3/include/python3.7m/boolobject.h
+/usr/include/python3.8/boolobject.h
 floatobject.h
-/opt/anaconda3/include/python3.7m/floatobject.h
+/usr/include/python3.8/floatobject.h
 complexobject.h
-/opt/anaconda3/include/python3.7m/complexobject.h
+/usr/include/python3.8/complexobject.h
 rangeobject.h
-/opt/anaconda3/include/python3.7m/rangeobject.h
+/usr/include/python3.8/rangeobject.h
 memoryobject.h
-/opt/anaconda3/include/python3.7m/memoryobject.h
+/usr/include/python3.8/memoryobject.h
 tupleobject.h
-/opt/anaconda3/include/python3.7m/tupleobject.h
+/usr/include/python3.8/tupleobject.h
 listobject.h
-/opt/anaconda3/include/python3.7m/listobject.h
+/usr/include/python3.8/listobject.h
 dictobject.h
-/opt/anaconda3/include/python3.7m/dictobject.h
+/usr/include/python3.8/dictobject.h
 odictobject.h
-/opt/anaconda3/include/python3.7m/odictobject.h
+/usr/include/python3.8/odictobject.h
 enumobject.h
-/opt/anaconda3/include/python3.7m/enumobject.h
+/usr/include/python3.8/enumobject.h
 setobject.h
-/opt/anaconda3/include/python3.7m/setobject.h
+/usr/include/python3.8/setobject.h
 methodobject.h
-/opt/anaconda3/include/python3.7m/methodobject.h
+/usr/include/python3.8/methodobject.h
 moduleobject.h
-/opt/anaconda3/include/python3.7m/moduleobject.h
+/usr/include/python3.8/moduleobject.h
 funcobject.h
-/opt/anaconda3/include/python3.7m/funcobject.h
+/usr/include/python3.8/funcobject.h
 classobject.h
-/opt/anaconda3/include/python3.7m/classobject.h
+/usr/include/python3.8/classobject.h
 fileobject.h
-/opt/anaconda3/include/python3.7m/fileobject.h
+/usr/include/python3.8/fileobject.h
 pycapsule.h
-/opt/anaconda3/include/python3.7m/pycapsule.h
+/usr/include/python3.8/pycapsule.h
 traceback.h
-/opt/anaconda3/include/python3.7m/traceback.h
+/usr/include/python3.8/traceback.h
 sliceobject.h
-/opt/anaconda3/include/python3.7m/sliceobject.h
+/usr/include/python3.8/sliceobject.h
 cellobject.h
-/opt/anaconda3/include/python3.7m/cellobject.h
+/usr/include/python3.8/cellobject.h
 iterobject.h
-/opt/anaconda3/include/python3.7m/iterobject.h
+/usr/include/python3.8/iterobject.h
 genobject.h
-/opt/anaconda3/include/python3.7m/genobject.h
+/usr/include/python3.8/genobject.h
 descrobject.h
-/opt/anaconda3/include/python3.7m/descrobject.h
+/usr/include/python3.8/descrobject.h
 warnings.h
-/opt/anaconda3/include/python3.7m/warnings.h
+/usr/include/python3.8/warnings.h
 weakrefobject.h
-/opt/anaconda3/include/python3.7m/weakrefobject.h
+/usr/include/python3.8/weakrefobject.h
 structseq.h
-/opt/anaconda3/include/python3.7m/structseq.h
+/usr/include/python3.8/structseq.h
 namespaceobject.h
-/opt/anaconda3/include/python3.7m/namespaceobject.h
+/usr/include/python3.8/namespaceobject.h
+picklebufobject.h
+/usr/include/python3.8/picklebufobject.h
 codecs.h
-/opt/anaconda3/include/python3.7m/codecs.h
+/usr/include/python3.8/codecs.h
 pyerrors.h
-/opt/anaconda3/include/python3.7m/pyerrors.h
+/usr/include/python3.8/pyerrors.h
+cpython/initconfig.h
+/usr/include/python3.8/cpython/initconfig.h
 pystate.h
-/opt/anaconda3/include/python3.7m/pystate.h
+/usr/include/python3.8/pystate.h
 context.h
-/opt/anaconda3/include/python3.7m/context.h
+/usr/include/python3.8/context.h
 pyarena.h
-/opt/anaconda3/include/python3.7m/pyarena.h
+/usr/include/python3.8/pyarena.h
 modsupport.h
-/opt/anaconda3/include/python3.7m/modsupport.h
+/usr/include/python3.8/modsupport.h
 compile.h
-/opt/anaconda3/include/python3.7m/compile.h
+/usr/include/python3.8/compile.h
 pythonrun.h
-/opt/anaconda3/include/python3.7m/pythonrun.h
+/usr/include/python3.8/pythonrun.h
 pylifecycle.h
-/opt/anaconda3/include/python3.7m/pylifecycle.h
+/usr/include/python3.8/pylifecycle.h
 ceval.h
-/opt/anaconda3/include/python3.7m/ceval.h
+/usr/include/python3.8/ceval.h
 sysmodule.h
-/opt/anaconda3/include/python3.7m/sysmodule.h
+/usr/include/python3.8/sysmodule.h
 osmodule.h
-/opt/anaconda3/include/python3.7m/osmodule.h
+/usr/include/python3.8/osmodule.h
 intrcheck.h
-/opt/anaconda3/include/python3.7m/intrcheck.h
+/usr/include/python3.8/intrcheck.h
 import.h
-/opt/anaconda3/include/python3.7m/import.h
+/usr/include/python3.8/import.h
 abstract.h
-/opt/anaconda3/include/python3.7m/abstract.h
+/usr/include/python3.8/abstract.h
 bltinmodule.h
-/opt/anaconda3/include/python3.7m/bltinmodule.h
+/usr/include/python3.8/bltinmodule.h
 eval.h
-/opt/anaconda3/include/python3.7m/eval.h
+/usr/include/python3.8/eval.h
 pyctype.h
-/opt/anaconda3/include/python3.7m/pyctype.h
+/usr/include/python3.8/pyctype.h
 pystrtod.h
-/opt/anaconda3/include/python3.7m/pystrtod.h
+/usr/include/python3.8/pystrtod.h
 pystrcmp.h
-/opt/anaconda3/include/python3.7m/pystrcmp.h
+/usr/include/python3.8/pystrcmp.h
 dtoa.h
-/opt/anaconda3/include/python3.7m/dtoa.h
+/usr/include/python3.8/dtoa.h
 fileutils.h
-/opt/anaconda3/include/python3.7m/fileutils.h
+/usr/include/python3.8/fileutils.h
 pyfpe.h
-/opt/anaconda3/include/python3.7m/pyfpe.h
+/usr/include/python3.8/pyfpe.h
+tracemalloc.h
+/usr/include/python3.8/tracemalloc.h
 
-/opt/anaconda3/include/python3.7m/abstract.h
+/usr/include/python3.8/abstract.h
+cpython/abstract.h
+/usr/include/python3.8/cpython/abstract.h
 
-/opt/anaconda3/include/python3.7m/bltinmodule.h
+/usr/include/python3.8/bltinmodule.h
 
-/opt/anaconda3/include/python3.7m/boolobject.h
+/usr/include/python3.8/boolobject.h
 
-/opt/anaconda3/include/python3.7m/bytearrayobject.h
+/usr/include/python3.8/bytearrayobject.h
 stdarg.h
 -
 
-/opt/anaconda3/include/python3.7m/bytesobject.h
+/usr/include/python3.8/bytesobject.h
 stdarg.h
 -
 
-/opt/anaconda3/include/python3.7m/cellobject.h
+/usr/include/python3.8/cellobject.h
 
-/opt/anaconda3/include/python3.7m/ceval.h
+/usr/include/python3.8/ceval.h
 
-/opt/anaconda3/include/python3.7m/classobject.h
+/usr/include/python3.8/classobject.h
 
-/opt/anaconda3/include/python3.7m/code.h
+/usr/include/python3.8/code.h
 
-/opt/anaconda3/include/python3.7m/codecs.h
+/usr/include/python3.8/codecs.h
 
-/opt/anaconda3/include/python3.7m/compile.h
+/usr/include/python3.8/compile.h
 code.h
-/opt/anaconda3/include/python3.7m/code.h
+/usr/include/python3.8/code.h
 
-/opt/anaconda3/include/python3.7m/complexobject.h
+/usr/include/python3.8/complexobject.h
 
-/opt/anaconda3/include/python3.7m/context.h
+/usr/include/python3.8/context.h
 
-/opt/anaconda3/include/python3.7m/descrobject.h
+/usr/include/python3.8/cpython/abstract.h
 
-/opt/anaconda3/include/python3.7m/dictobject.h
+/usr/include/python3.8/cpython/dictobject.h
 
-/opt/anaconda3/include/python3.7m/dtoa.h
+/usr/include/python3.8/cpython/fileobject.h
 
-/opt/anaconda3/include/python3.7m/dynamic_annotations.h
+/usr/include/python3.8/cpython/initconfig.h
 
-/opt/anaconda3/include/python3.7m/enumobject.h
+/usr/include/python3.8/cpython/object.h
 
-/opt/anaconda3/include/python3.7m/eval.h
+/usr/include/python3.8/cpython/objimpl.h
 
-/opt/anaconda3/include/python3.7m/fileobject.h
+/usr/include/python3.8/cpython/pyerrors.h
 
-/opt/anaconda3/include/python3.7m/fileutils.h
+/usr/include/python3.8/cpython/pylifecycle.h
 
-/opt/anaconda3/include/python3.7m/floatobject.h
+/usr/include/python3.8/cpython/pymem.h
 
-/opt/anaconda3/include/python3.7m/frameobject.h
+/usr/include/python3.8/cpython/pystate.h
+cpython/initconfig.h
+/usr/include/python3.8/cpython/cpython/initconfig.h
 
-/opt/anaconda3/include/python3.7m/funcobject.h
+/usr/include/python3.8/cpython/sysmodule.h
 
-/opt/anaconda3/include/python3.7m/genobject.h
+/usr/include/python3.8/cpython/traceback.h
 
-/opt/anaconda3/include/python3.7m/import.h
+/usr/include/python3.8/cpython/tupleobject.h
 
-/opt/anaconda3/include/python3.7m/intrcheck.h
+/usr/include/python3.8/cpython/unicodeobject.h
 
-/opt/anaconda3/include/python3.7m/iterobject.h
+/usr/include/python3.8/descrobject.h
 
-/opt/anaconda3/include/python3.7m/listobject.h
+/usr/include/python3.8/dictobject.h
+cpython/dictobject.h
+/usr/include/python3.8/cpython/dictobject.h
 
-/opt/anaconda3/include/python3.7m/longintrepr.h
+/usr/include/python3.8/dtoa.h
 
-/opt/anaconda3/include/python3.7m/longobject.h
+/usr/include/python3.8/enumobject.h
 
-/opt/anaconda3/include/python3.7m/memoryobject.h
+/usr/include/python3.8/eval.h
 
-/opt/anaconda3/include/python3.7m/methodobject.h
+/usr/include/python3.8/fileobject.h
+cpython/fileobject.h
+/usr/include/python3.8/cpython/fileobject.h
 
-/opt/anaconda3/include/python3.7m/modsupport.h
+/usr/include/python3.8/fileutils.h
+
+/usr/include/python3.8/floatobject.h
+
+/usr/include/python3.8/frameobject.h
+
+/usr/include/python3.8/funcobject.h
+
+/usr/include/python3.8/genobject.h
+pystate.h
+/usr/include/python3.8/pystate.h
+
+/usr/include/python3.8/import.h
+
+/usr/include/python3.8/intrcheck.h
+
+/usr/include/python3.8/iterobject.h
+
+/usr/include/python3.8/listobject.h
+
+/usr/include/python3.8/longintrepr.h
+
+/usr/include/python3.8/longobject.h
+
+/usr/include/python3.8/memoryobject.h
+
+/usr/include/python3.8/methodobject.h
+
+/usr/include/python3.8/modsupport.h
 stdarg.h
 -
 
-/opt/anaconda3/include/python3.7m/moduleobject.h
+/usr/include/python3.8/moduleobject.h
 
-/opt/anaconda3/include/python3.7m/namespaceobject.h
+/usr/include/python3.8/namespaceobject.h
 
-/opt/anaconda3/include/python3.7m/object.h
-
-/opt/anaconda3/include/python3.7m/objimpl.h
+/usr/include/python3.8/object.h
 pymem.h
-/opt/anaconda3/include/python3.7m/pymem.h
+/usr/include/python3.8/pymem.h
+cpython/object.h
+/usr/include/python3.8/cpython/object.h
 
-/opt/anaconda3/include/python3.7m/odictobject.h
+/usr/include/python3.8/objimpl.h
+pymem.h
+/usr/include/python3.8/pymem.h
+cpython/objimpl.h
+/usr/include/python3.8/cpython/objimpl.h
 
-/opt/anaconda3/include/python3.7m/osmodule.h
+/usr/include/python3.8/odictobject.h
 
-/opt/anaconda3/include/python3.7m/patchlevel.h
+/usr/include/python3.8/osmodule.h
 
-/opt/anaconda3/include/python3.7m/pyarena.h
+/usr/include/python3.8/patchlevel.h
 
-/opt/anaconda3/include/python3.7m/pyatomic.h
-dynamic_annotations.h
-/opt/anaconda3/include/python3.7m/dynamic_annotations.h
-pyconfig.h
-/opt/anaconda3/include/python3.7m/pyconfig.h
-stdatomic.h
+/usr/include/python3.8/picklebufobject.h
+
+/usr/include/python3.8/pyarena.h
+
+/usr/include/python3.8/pycapsule.h
+
+/usr/include/python3.8/pyconfig.h
+x86_64-linux-gnu/python3.8/pyconfig.h
 -
-intrin.h
+x86_64-linux-gnux32/python3.8/pyconfig.h
 -
-immintrin.h
+i386-linux-gnu/python3.8/pyconfig.h
+-
+aarch64-linux-gnu/python3.8/pyconfig.h
+-
+alpha-linux-gnu/python3.8/pyconfig.h
+-
+arm-linux-gnueabihf/python3.8/pyconfig.h
+-
+arm-linux-gnueabi/python3.8/pyconfig.h
+-
+hppa-linux-gnu/python3.8/pyconfig.h
+-
+ia64-linux-gnu/python3.8/pyconfig.h
+-
+m68k-linux-gnu/python3.8/pyconfig.h
+-
+mipsisa32r6el-linux-gnu/python3.8/pyconfig.h
+-
+mipsisa64r6el-linux-gnuabin32/python3.8/pyconfig.h
+-
+mipsisa64r6el-linux-gnuabi64/python3.8/pyconfig.h
+-
+mipsisa32r6-linux-gnu/python3.8/pyconfig.h
+-
+mipsisa64r6-linux-gnuabin32/python3.8/pyconfig.h
+-
+mipsisa64r6-linux-gnuabi64/python3.8/pyconfig.h
+-
+mipsel-linux-gnu/python3.8/pyconfig.h
+-
+mips64el-linux-gnuabin32/python3.8/pyconfig.h
+-
+mips64el-linux-gnuabi64/python3.8/pyconfig.h
+-
+mips-linux-gnu/python3.8/pyconfig.h
+-
+mips64-linux-gnuabin32/python3.8/pyconfig.h
+-
+mips64-linux-gnuabi64/python3.8/pyconfig.h
+-
+or1k-linux-gnu/python3.8/pyconfig.h
+-
+powerpc-linux-gnuspe/python3.8/pyconfig.h
+-
+powerpc64le-linux-gnu/python3.8/pyconfig.h
+-
+powerpc64-linux-gnu/python3.8/pyconfig.h
+-
+powerpc-linux-gnu/python3.8/pyconfig.h
+-
+s390x-linux-gnu/python3.8/pyconfig.h
+-
+s390-linux-gnu/python3.8/pyconfig.h
+-
+sh4-linux-gnu/python3.8/pyconfig.h
+-
+sparc64-linux-gnu/python3.8/pyconfig.h
+-
+sparc-linux-gnu/python3.8/pyconfig.h
+-
+riscv64-linux-gnu/python3.8/pyconfig.h
+-
+riscv32-linux-gnu/python3.8/pyconfig.h
+-
+x86_64-kfreebsd-gnu/python3.8/pyconfig.h
+-
+i386-kfreebsd-gnu/python3.8/pyconfig.h
+-
+i386-gnu/python3.8/pyconfig.h
 -
 
-/opt/anaconda3/include/python3.7m/pycapsule.h
+/usr/include/python3.8/pyctype.h
 
-/opt/anaconda3/include/python3.7m/pyconfig.h
+/usr/include/python3.8/pydebug.h
 
-/opt/anaconda3/include/python3.7m/pyctype.h
-
-/opt/anaconda3/include/python3.7m/pydebug.h
-
-/opt/anaconda3/include/python3.7m/pyerrors.h
+/usr/include/python3.8/pyerrors.h
 stdarg.h
 -
+cpython/pyerrors.h
+/usr/include/python3.8/cpython/pyerrors.h
 
-/opt/anaconda3/include/python3.7m/pyfpe.h
+/usr/include/python3.8/pyfpe.h
 
-/opt/anaconda3/include/python3.7m/pyhash.h
+/usr/include/python3.8/pyhash.h
 
-/opt/anaconda3/include/python3.7m/pylifecycle.h
+/usr/include/python3.8/pylifecycle.h
+cpython/pylifecycle.h
+/usr/include/python3.8/cpython/pylifecycle.h
 
-/opt/anaconda3/include/python3.7m/pymacconfig.h
+/usr/include/python3.8/pymacconfig.h
 
-/opt/anaconda3/include/python3.7m/pymacro.h
+/usr/include/python3.8/pymacro.h
 
-/opt/anaconda3/include/python3.7m/pymath.h
+/usr/include/python3.8/pymath.h
 pyconfig.h
-/opt/anaconda3/include/python3.7m/pyconfig.h
+/usr/include/python3.8/pyconfig.h
 
-/opt/anaconda3/include/python3.7m/pymem.h
+/usr/include/python3.8/pymem.h
 pyport.h
-/opt/anaconda3/include/python3.7m/pyport.h
+/usr/include/python3.8/pyport.h
+cpython/pymem.h
+/usr/include/python3.8/cpython/pymem.h
 
-/opt/anaconda3/include/python3.7m/pyport.h
+/usr/include/python3.8/pyport.h
 pyconfig.h
-/opt/anaconda3/include/python3.7m/pyconfig.h
+/usr/include/python3.8/pyconfig.h
 inttypes.h
 -
 stdlib.h
@@ -556,53 +674,63 @@ ctype.h
 wctype.h
 -
 
-/opt/anaconda3/include/python3.7m/pystate.h
+/usr/include/python3.8/pystate.h
 pythread.h
-/opt/anaconda3/include/python3.7m/pythread.h
+/usr/include/python3.8/pythread.h
+cpython/pystate.h
+/usr/include/python3.8/cpython/pystate.h
 
-/opt/anaconda3/include/python3.7m/pystrcmp.h
+/usr/include/python3.8/pystrcmp.h
 
-/opt/anaconda3/include/python3.7m/pystrtod.h
+/usr/include/python3.8/pystrtod.h
 
-/opt/anaconda3/include/python3.7m/pythonrun.h
+/usr/include/python3.8/pythonrun.h
 
-/opt/anaconda3/include/python3.7m/pythread.h
+/usr/include/python3.8/pythread.h
 pthread.h
 -
 
-/opt/anaconda3/include/python3.7m/pytime.h
+/usr/include/python3.8/pytime.h
 pyconfig.h
-/opt/anaconda3/include/python3.7m/pyconfig.h
+/usr/include/python3.8/pyconfig.h
 object.h
-/opt/anaconda3/include/python3.7m/object.h
+/usr/include/python3.8/object.h
 
-/opt/anaconda3/include/python3.7m/rangeobject.h
+/usr/include/python3.8/rangeobject.h
 
-/opt/anaconda3/include/python3.7m/setobject.h
+/usr/include/python3.8/setobject.h
 
-/opt/anaconda3/include/python3.7m/sliceobject.h
+/usr/include/python3.8/sliceobject.h
 
-/opt/anaconda3/include/python3.7m/structseq.h
+/usr/include/python3.8/structseq.h
 
-/opt/anaconda3/include/python3.7m/sysmodule.h
+/usr/include/python3.8/sysmodule.h
+cpython/sysmodule.h
+/usr/include/python3.8/cpython/sysmodule.h
 
-/opt/anaconda3/include/python3.7m/traceback.h
-pystate.h
-/opt/anaconda3/include/python3.7m/pystate.h
+/usr/include/python3.8/traceback.h
+cpython/traceback.h
+/usr/include/python3.8/cpython/traceback.h
 
-/opt/anaconda3/include/python3.7m/tupleobject.h
+/usr/include/python3.8/tracemalloc.h
 
-/opt/anaconda3/include/python3.7m/typeslots.h
+/usr/include/python3.8/tupleobject.h
+cpython/tupleobject.h
+/usr/include/python3.8/cpython/tupleobject.h
 
-/opt/anaconda3/include/python3.7m/unicodeobject.h
+/usr/include/python3.8/typeslots.h
+
+/usr/include/python3.8/unicodeobject.h
 stdarg.h
 -
 ctype.h
 -
 wchar.h
 -
+cpython/unicodeobject.h
+/usr/include/python3.8/cpython/unicodeobject.h
 
-/opt/anaconda3/include/python3.7m/warnings.h
+/usr/include/python3.8/warnings.h
 
-/opt/anaconda3/include/python3.7m/weakrefobject.h
+/usr/include/python3.8/weakrefobject.h
 

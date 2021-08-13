@@ -34,7 +34,7 @@ to make sure that we have all required python modules installed. To do this we c
 This should recursively install any required modules. Once we get all of the python modules
 installed, we need to compile our C++ code for whatever system this is being run on.
 We can do this fairly easily by moving into the `FinalProject/build` directory, and running   
-`cmake .. & make`  
+`cmake .. && make`  
 If cmake is not installed, it can be installed by running   
 `sudo apt-get -y install cmake`  
 The last step after compilation will be to move the newly created `.so` file to the proper

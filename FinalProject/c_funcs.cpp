@@ -1,6 +1,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <cmath>
+#include <iostream>
 
 namespace py = pybind11;
 
@@ -8,21 +9,21 @@ namespace py = pybind11;
 int sum(py::list lst){
 	int sum=0;
 	for(int i=0;i<lst.size();i++){
-		sum += lst[i];
+		sum += lst[i].cast<int>();
 	}
 	return sum;
 }
 
 double avg(py::list lst){
-	return double(sum(lst, lst.size()))/lst.size();
+	return double(sum(lst))/lst.size();
 }
 
 int* max(py::list lst){
-	int max = lst[0];
+	int max = lst[0].cast<int>();
 	int index = 0;
 	for(int i=1;i<lst.size();i++){
-		if(lst[i] > max){
-			max = lst[i];
+		if(lst[i].cast<int>() > max){
+			max = lst[i].cast<int>();
 			index = i;
 		}
 	}
@@ -33,11 +34,11 @@ int* max(py::list lst){
 }
 
 int* min(py::list lst){
-	int min = lst[0];
+	int min = lst[0].cast<int>();
 	int index = 0;
 	for(int i=1;i<lst.size();i++){
-		if(lst[i] < min){
-			min = lst[i];
+		if(lst[i].cast<int>() < min){
+			min = lst[i].cast<int>();
 			index = i;
 		}
 	}
@@ -48,43 +49,46 @@ int* min(py::list lst){
 }
 
 double std_dev(py::list lst){
-	double mean = avg(lst, lst.size());
+	double mean = avg(lst);
 	double sqr_diff = 0;
 	for(int i=0;i<lst.size();i++){
-		sqr_diff += std::pow(lst[i] - mean,2);
+		sqr_diff += std::pow(lst[i].cast<int>() - mean,2);
 	}
 	return pow(sqr_diff/lst.size(),0.5);
 }
 
 // based upon the average of whatever values are sent in (weight or reps)
 int best_pos(py::list lst, py::list pos){
-	int sum_of_pos[20];
+	double sum_of_pos[20];
 	int count_of_pos[20];
 	int position = 0;
 	for(int i=0;i<20;i++){
 		sum_of_pos[i] = 0;
+		count_of_pos[i] = 0;
 	}
 	for(int i=0;i<lst.size();i++){
-		sum_of_pos[pos[i]] += lst[i];
-		count_of_pos[pos[i]]++;
+		sum_of_pos[pos[i].cast<int>()-1] += lst[i].cast<int>();
+		count_of_pos[pos[i].cast<int>()-1]++;
 	}
+	
 	for(int i=0;i<20;i++){
 		if(count_of_pos[i] != 0){
 			sum_of_pos[i] /= count_of_pos[i];
 		}
 	}
+	
 	for(int i=1;i<20;i++){
 		if(sum_of_pos[i] > sum_of_pos[position]){
 			position = i;
 		}
 	}
-	return position;
+	return position+1;
 }
 
 int consistant_pos(py::list lst, py::list pos){
-	int sum_of_pos[20];
+	double sum_of_pos[20];
 	int count_of_pos[20];
-	int sqr_diff_of_pos[20];
+	double sqr_diff_of_pos[20];
 	int position = 0;
 	for(int i=0;i<20;i++){
 		sum_of_pos[i] = 0;
@@ -92,35 +96,59 @@ int consistant_pos(py::list lst, py::list pos){
 		sqr_diff_of_pos[i] = 0;
 	}
 	for(int i=0;i<lst.size();i++){
-		sum_of_pos[pos[i]] += lst[i];
-		count_of_pos[pos[i]]++;
+		sum_of_pos[pos[i].cast<int>()-1] += lst[i].cast<int>();
+		count_of_pos[pos[i].cast<int>()-1]++;
+	}
+	std::cout << "Sum: ";
+	for (int i=0;i<lst.size();i++){
+		std::cout << sum_of_pos[i] << " ";
+	}
+	std::cout << std::endl;
+	std::cout << "Count: ";
+	for (int i=0;i<lst.size();i++){
+		std::cout << count_of_pos[i] << " ";
 	}
 	for(int i=0;i<20;i++){
 		if(count_of_pos[i] != 0){
 			sum_of_pos[i] /= count_of_pos[i];
 		}
 	}
+	std::cout << "Avg: ";
+	for (int i=0;i<lst.size();i++){
+		std::cout << sum_of_pos[i] << " ";
+	}
+	std::cout << std::endl;
 	// sum_of_pos now is the avg of pos
 	for(int i=0;i<lst.size();i++){
-		sqr_diff_of_pos[pos[i]] += std::pow(lst[i] - sum_of_pos[pos[i]],2);
+		sqr_diff_of_pos[pos[i].cast<int>()-1] += std::pow(lst[i].cast<int>() - sum_of_pos[pos[i].cast<int>()-1],2);
 	}
+	std::cout << "SqrDiff: ";
+	for (int i=0;i<lst.size();i++){
+		std::cout << sqr_diff_of_pos[i] << " ";
+	}
+	std::cout << std::endl;
 	for(int i=0;i<20;i++){
 		if(count_of_pos[i] != 0){
 			sqr_diff_of_pos[i] /= count_of_pos[i];
 		}
 	}
+	std::cout << "SqrDiffAvg: ";
+	for (int i=0;i<lst.size();i++){
+		std::cout << sqr_diff_of_pos[i] << " ";
+	}
+	std::cout << std::endl;
 	for(int i=1;i<20;i++){
-		if(sqr_diff_of_pos[i] < sqr_diff_of_pos[position]){
+		if(sqr_diff_of_pos[i] < sqr_diff_of_pos[position] && count_of_pos[i] != 0){
 			position = i;
 		}
 	}
-	return position;
+	return position+1;
 }
 
 int total_lifted(py::list weight, py::list reps){
 	int total = 0;
 	for(int i=0;i<weight.size();i++){
-		total += weight[i] * reps[i];
+		total += weight[i].cast<int>() * reps[i].cast<int>();
 	}
 	return total;
 }
