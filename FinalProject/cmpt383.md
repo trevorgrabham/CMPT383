@@ -29,20 +29,10 @@ requests.
 ### Exactly what steps should be taken to get the project working, after getting your code?   
 
 After getting my code and moving directories to the `FinalProject` directory, we first need
-to make sure that we have all required python modules installed. To do this we can run   
-`pip install -r requirements.txt`  
-This should recursively install any required modules. Once we get all of the python modules
-installed, we need to compile our C++ code for whatever system this is being run on.
-We can do this fairly easily by moving into the `FinalProject/build` directory, and running   
-`cmake .. && make`  
-If cmake is not installed, it can be installed by running   
-`sudo apt-get -y install cmake`  
-The last step after compilation will be to move the newly created `.so` file to the proper
-directory. This can be done by running   
-`mv ./c_funcs.*.so ../finalproject`   
-Finally, we can move back to the parent folder `FinalProject` and start our web server
-by running   
-`python ./run.py`   
+to make sure that we have all required python modules installed. I have included a handy script file to do this for us, and to boot up the web server at the same time. To do this we can run   
+`bash cmpt383.sh`  
+If this fails, it should be due to the C++ functions that I had compiled on the csil servers. If we are failing to import c_funcs because python cannot find the module, I have included a second script that will create a make file, and will compile the C++ code. From there, it also moves the compiled code to the proper folder, and starts the web server for us. We can run this script using    
+`bash fix_c_funcs.sh`   
 Our web server should now be running on `localhost:5000` and we should be able to open
 a browser and see it in action.  
 

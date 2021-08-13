@@ -138,4 +138,4 @@ def display():
 
 @app.route("/test")
 def test():
-    return render_template('index.html', title=c_funcs.add(1,2))
+    return render_template('index.html', title=c_funcs.min([1,2]))
