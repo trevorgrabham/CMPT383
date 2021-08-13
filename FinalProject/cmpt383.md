@@ -28,6 +28,8 @@ requests.
 
 ### Exactly what steps should be taken to get the project working, after getting your code?   
 
+The easiest way to get a working version of my project, would be to go to [https://trevorgrabham-finalproject.herokuapp.com/](https://trevorgrabham-finalproject.herokuapp.com/ "Trevor's Final Project") Otherwise we can follow these steps.  
+
 After getting my code and moving directories to the `FinalProject` directory, we first need
 to make sure that we have all required python modules installed. I have included a handy script file to do this for us, and to boot up the web server at the same time. To do this we can run   
 `bash cmpt383.sh`  
