@@ -26,7 +26,7 @@ int* max(int* lst, int len){
 			index = i;
 		}
 	}
-	res = new int[2];
+	int* res = new int[2];
 	res[0] = max;
 	res[1] = index;
 	return res;
@@ -41,7 +41,7 @@ int* min(int* lst, int len){
 			index = i;
 		}
 	}
-	res = new int[2];
+	int* res = new int[2];
 	res[0] = min;
 	res[1] = index;
 	return res;
@@ -58,8 +58,8 @@ double std_dev(int* lst, int len){
 
 // based upon the average of whatever values are sent in (weight or reps)
 int best_pos(int* lst, int* pos, int len){
-	int* sum_of_pos = int[20];
-	int* count_of_pos = int[20];
+	int sum_of_pos[20];
+	int count_of_pos[20];
 	int position = 0;
 	for(int i=0;i<20;i++){
 		sum_of_pos[i] = 0;
@@ -81,9 +81,9 @@ int best_pos(int* lst, int* pos, int len){
 }
 
 int consistant_pos(int* lst, int* pos,  int len){
-	int* sum_of_pos = int[20];
-	int* count_of_pos = int[20];
-	int* sqr_diff_of_pos = int[20];
+	int sum_of_pos[20];
+	int count_of_pos[20];
+	int sqr_diff_of_pos[20];
 	int position = 0;
 	for(int i=0;i<20;i++){
 		sum_of_pos[i] = 0;
