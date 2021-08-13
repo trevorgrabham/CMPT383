@@ -4,20 +4,20 @@
 {% if workouts| length != 0 %}
     <div class="row">
     {%for i in range(workouts| length)%}
-        {% if i%2 != 0 %}
+        {% if i%2 == 0 and i != 0 %}
             </div>
             <div class="row">
         {% endif %}
-        <div class="card mb-3 col-sm-4">
+        <div class="card mb-3 col-sm-5 mr-3">
             <div class="card-body">
-                <h5 class="card-title">{{workouts[i][0][0].date}}</h5>
+                <h4 class="card-title">{{workouts[i][0][0].date}}</h4>
                 {%for j in range(workouts[i]| length)%}
-                    <h6 class="card-subtitle mb-2 text-muted">{{workouts[i][j][0].name}}</h6>
+                    <h5 class="card-subtitle mb-2 text-muted">{{workouts[i][j][0].name}}</h5>
                     {%for k in range(workouts[i][j]| length)%}
                         {% if workouts[i][j][k].weight != 0 %}
-                            <p class="car-text">{{workouts[i][j][k].weight}}lbs X {{workouts[i][j][k].reps}}</p>
+                            <p class="card-text">{{workouts[i][j][k].weight}}lbs X {{workouts[i][j][k].reps}}</p>
                         {% else %}
-                        <p class="car-text">body weight X {{workouts[i][j][k].reps}}</p>
+                        <p class="card-text">body weight X {{workouts[i][j][k].reps}}</p>
                         {% endif %}
                     {%endfor%}
                 {%endfor%}

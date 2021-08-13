@@ -1,11 +1,18 @@
-from flask import render_template, url_for, flash, redirect, request, jsonify
+from flask import render_template, url_for, flash, redirect, request, jsonify, Response
 from flask_login import login_user, current_user, logout_user, login_required
 from itertools import groupby
 from operator import attrgetter
+import io 
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+from matplotlib.pyplot import xticks
+import matplotlib.dates as mdates
+import seaborn as sns
 from finalproject import app, bcrypt, db
 from finalproject.forms import LoginForm, SignUpForm
 from finalproject.models import User, Exercise
 import finalproject.c_funcs as c_funcs
+
 
 
 @app.route("/")
@@ -140,4 +147,50 @@ def display():
     all()
 
     days = [list(g) for k, g in groupby(res, attrgetter('date'))]
-    return render_template('display.html', title=title, days=days)
+    weight = []
+    pos = []
+    reps = []
+    stats = {}
+    stats['total_days'] = len(days)
+    for day in days:
+        for exercise in day:
+            weight.append(exercise.weight)
+            reps.append(exercise.reps)
+            pos.append(exercise.position)
+    stats['total_reps'] = c_funcs.sum(reps)
+    stats['avg_reps'] = c_funcs.avg(reps)
+    stats['total_weight'] = c_funcs.total_lifted(weight, reps)
+    stats['avg_weight'] = c_funcs.avg(weight)
+    stats['min_reps'] = c_funcs.min(reps)
+    stats['min_weight'] = c_funcs.min(weight)
+    stats['max_reps'] = c_funcs.max(reps)
+    stats['max_weight'] = c_funcs.max(weight)
+    stats['best_set'] = c_funcs.best_pos(weight, pos)
+    stats['consistant_set'] = c_funcs.consistant_pos(weight,pos)
+    return render_template('display.html', title=title, days=days, stats=stats)
+
+
+@app.route("/plot.png")
+def plot():
+    f = Figure()
+    sns.set_style('darkgrid')
+    a = f.add_subplot(1,1,1)
+    res = db.session.query(Exercise).\
+    filter(Exercise.userId==current_user.id, Exercise.name==request.args.get('name'), Exercise.position==1).\
+    order_by(Exercise.date).\
+    all()
+    weight = []
+    date = []
+    for elem in res:
+        weight.append(elem.weight)
+        date.append(elem.date)
+        print(elem.date)
+    a.plot(date, weight)
+    a.set_xticklabels(a.get_xticks(), rotation=25)
+    a.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%-d'))
+    sns.despine(left=True, bottom=True)
+    output = io.BytesIO()
+    FigureCanvas(f).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+
+

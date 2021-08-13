@@ -1,9 +1,0 @@
-- add dummy data 
-- image carousel of people working out on home page
-- use cards for the workouts, maybe two columns
-- use three columns for exercises
-- make the plots for the display page 
-- show the statistics in the display page 
-- comment in, where it isn't my code
-
-- get heroku working 

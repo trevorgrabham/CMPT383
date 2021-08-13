@@ -2,20 +2,71 @@
 
 {% block content %}
     <h1>{{ title }}</h1>
-    <br><br><br><br><br>
-    <h2>Your history</h2>
-    <br><br>
-    {% for day in days %}
-        <h4>{{day[0].date}}</h4>
-        {% for exercise in day %}
-            <div>
-                {% if exercise.weight == 0 %}
-                <h5>bodyweight x {{exercise.reps}}</h5>
-                {% else %}
-                    <h5>{{exercise.weight}}lbs x {{exercise.reps}}</h5>
-                {% endif %}
+    {% if days| length != 0 %}
+        <img src="/plot.png?name={{title}}" alt="plot of first set weight over time">
+        <br><br>
+        <h2>Your statistics</h2>
+        <br><br>
+        <div class="row">
+            <div class="card mb-3 col-sm-3 ml-4">
+                <div class="card-body">
+                    <h4 class="card-title">Weight</h4>
+                    <h5 class="card-subtitle mb-2 text-muted">Average weight lifted</h5>
+                    <p class="card-text">{{"%.2f"|format(stats.avg_weight)}}lbs</p>
+                    <h5 class="card-subtitle mb-2 text-muted">Least weight lifted</h5>
+                    <p class="card-text">{{stats.min_weight}}lbs</p>
+                    <h5 class="card-subtitle mb-2 text-muted">Most weight lifted</h5>
+                    <p class="card-text">{{stats.max_weight}}lbs</p>
+                    <h5 class="card-subtitle mb-2 text-muted">Total weight lifted</h5>
+                    <p class="card-text">{{stats.total_weight}}lbs</p>
+                </div>
+            </div>
+            <div class="card mb-3 col-sm-3 ml-4">
+                <div class="card-body">
+                    <h4 class="card-title">Reps</h4>
+                    <h5 class="card-subtitle mb-2 text-muted">Average reps complete</h5>
+                    <p class="card-text">{{"%.2f"|format(stats.avg_reps)}} reps</p>
+                    <h5 class="card-subtitle mb-2 text-muted">Least reps complete</h5>
+                    <p class="card-text">{{stats.min_reps}} reps</p>
+                    <h5 class="card-subtitle mb-2 text-muted">Most reps complete</h5>
+                    <p class="card-text">{{stats.max_reps}} reps</p>
+                    <h5 class="card-subtitle mb-2 text-muted">Total reps complete</h5>
+                    <p class="card-text">{{stats.total_reps}} reps</p>
+                </div>
+            </div>
+            <div class="card mb-3 col-sm-3 ml-4">
+                <div class="card-body">
+                    <h4 class="card-title">Sets</h4>
+                    <h5 class="card-subtitle mb-2 text-muted">Best set</h5>
+                    <p class="card-text">Set {{stats.best_set}}</p>
+                    <h5 class="card-subtitle mb-2 text-muted">Most consistent set</h5>
+                    <p class="card-text">Set {{stats.consistant_set}}</p>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <h2>Your history</h2>
+        <br><br>
+        <div class="row">
+        {% for i in range(days| length) %}
+            {% if i%2 == 0 and i != 0 %}
+                </div>
+                <div class="row">
+            {% endif %}
+            <div class="card mb-3 col-sm-5 mr-3">
+                <div class="card-body">
+                    <h4 class="card-title">{{days[i][0].date}}</h4>
+
+                    {% for j in range(days[i]| length) %}
+                        {% if days[i][j].weight == 0 %}
+                            <p class="card-text">bodyweight X {{days[i][j].reps}}</p>
+                        {% else %}
+                            <p class="card-text">{{days[i][j].weight}}lbs X {{days[i][j].reps}}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         {% endfor %}
-        <br>
-    {% endfor %}
+        </div>
+    {% endif %}
 {% endblock content %}

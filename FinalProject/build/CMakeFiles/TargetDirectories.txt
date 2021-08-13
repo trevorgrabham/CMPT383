@@ -1,5 +1,0 @@
-/mnt/c/Users/treva/Desktop/SFU classes/CMPT383/FinalProject/build/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/treva/Desktop/SFU classes/CMPT383/FinalProject/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/treva/Desktop/SFU classes/CMPT383/FinalProject/build/CMakeFiles/c_funcs.dir
-/mnt/c/Users/treva/Desktop/SFU classes/CMPT383/FinalProject/build/pybind11/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/treva/Desktop/SFU classes/CMPT383/FinalProject/build/pybind11/CMakeFiles/edit_cache.dir

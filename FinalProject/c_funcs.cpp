@@ -99,44 +99,24 @@ int consistant_pos(py::list lst, py::list pos){
 		sum_of_pos[pos[i].cast<int>()-1] += lst[i].cast<int>();
 		count_of_pos[pos[i].cast<int>()-1]++;
 	}
-	std::cout << "Sum: ";
-	for (int i=0;i<lst.size();i++){
-		std::cout << sum_of_pos[i] << " ";
-	}
-	std::cout << std::endl;
-	std::cout << "Count: ";
-	for (int i=0;i<lst.size();i++){
-		std::cout << count_of_pos[i] << " ";
-	}
+	
 	for(int i=0;i<20;i++){
 		if(count_of_pos[i] != 0){
 			sum_of_pos[i] /= count_of_pos[i];
 		}
 	}
-	std::cout << "Avg: ";
-	for (int i=0;i<lst.size();i++){
-		std::cout << sum_of_pos[i] << " ";
-	}
-	std::cout << std::endl;
+	
 	// sum_of_pos now is the avg of pos
 	for(int i=0;i<lst.size();i++){
 		sqr_diff_of_pos[pos[i].cast<int>()-1] += std::pow(lst[i].cast<int>() - sum_of_pos[pos[i].cast<int>()-1],2);
 	}
-	std::cout << "SqrDiff: ";
-	for (int i=0;i<lst.size();i++){
-		std::cout << sqr_diff_of_pos[i] << " ";
-	}
-	std::cout << std::endl;
+	
 	for(int i=0;i<20;i++){
 		if(count_of_pos[i] != 0){
 			sqr_diff_of_pos[i] /= count_of_pos[i];
 		}
 	}
-	std::cout << "SqrDiffAvg: ";
-	for (int i=0;i<lst.size();i++){
-		std::cout << sqr_diff_of_pos[i] << " ";
-	}
-	std::cout << std::endl;
+	
 	for(int i=1;i<20;i++){
 		if(sqr_diff_of_pos[i] < sqr_diff_of_pos[position] && count_of_pos[i] != 0){
 			position = i;
