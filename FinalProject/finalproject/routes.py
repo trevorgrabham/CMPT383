@@ -16,7 +16,6 @@ import finalproject.c_funcs as c_funcs
 
 
 @app.route("/")
-@login_required
 def home():
     return render_template('index.html')
 
