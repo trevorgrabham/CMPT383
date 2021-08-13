@@ -5,22 +5,22 @@
 namespace py = pybind11;
 
 
-int sum(int* lst, int len){
+int sum(py::list lst){
 	int sum=0;
-	for(int i=0;i<len;i++){
+	for(int i=0;i<lst.size();i++){
 		sum += lst[i];
 	}
 	return sum;
 }
 
-double avg(int* lst, int len){
-	return double(sum(lst, len))/len;
+double avg(py::list lst){
+	return double(sum(lst, lst.size()))/lst.size();
 }
 
-int* max(int* lst, int len){
+int* max(py::list lst){
 	int max = lst[0];
 	int index = 0;
-	for(int i=1;i<len;i++){
+	for(int i=1;i<lst.size();i++){
 		if(lst[i] > max){
 			max = lst[i];
 			index = i;
@@ -32,10 +32,10 @@ int* max(int* lst, int len){
 	return res;
 }
 
-int* min(int* lst, int len){
+int* min(py::list lst){
 	int min = lst[0];
 	int index = 0;
-	for(int i=1;i<len;i++){
+	for(int i=1;i<lst.size();i++){
 		if(lst[i] < min){
 			min = lst[i];
 			index = i;
@@ -47,24 +47,24 @@ int* min(int* lst, int len){
 	return res;
 }
 
-double std_dev(int* lst, int len){
-	double mean = avg(lst, len);
+double std_dev(py::list lst){
+	double mean = avg(lst, lst.size());
 	double sqr_diff = 0;
-	for(int i=0;i<len;i++){
+	for(int i=0;i<lst.size();i++){
 		sqr_diff += std::pow(lst[i] - mean,2);
 	}
-	return pow(sqr_diff/len,0.5);
+	return pow(sqr_diff/lst.size(),0.5);
 }
 
 // based upon the average of whatever values are sent in (weight or reps)
-int best_pos(int* lst, int* pos, int len){
+int best_pos(py::list lst, py::list pos){
 	int sum_of_pos[20];
 	int count_of_pos[20];
 	int position = 0;
 	for(int i=0;i<20;i++){
 		sum_of_pos[i] = 0;
 	}
-	for(int i=0;i<len;i++){
+	for(int i=0;i<lst.size();i++){
 		sum_of_pos[pos[i]] += lst[i];
 		count_of_pos[pos[i]]++;
 	}
@@ -81,7 +81,7 @@ int best_pos(int* lst, int* pos, int len){
 	return position;
 }
 
-int consistant_pos(int* lst, int* pos,  int len){
+int consistant_pos(py::list lst, py::list pos){
 	int sum_of_pos[20];
 	int count_of_pos[20];
 	int sqr_diff_of_pos[20];
@@ -91,7 +91,7 @@ int consistant_pos(int* lst, int* pos,  int len){
 		count_of_pos[i] = 0;
 		sqr_diff_of_pos[i] = 0;
 	}
-	for(int i=0;i<len;i++){
+	for(int i=0;i<lst.size();i++){
 		sum_of_pos[pos[i]] += lst[i];
 		count_of_pos[pos[i]]++;
 	}
@@ -101,7 +101,7 @@ int consistant_pos(int* lst, int* pos,  int len){
 		}
 	}
 	// sum_of_pos now is the avg of pos
-	for(int i=0;i<len;i++){
+	for(int i=0;i<lst.size();i++){
 		sqr_diff_of_pos[pos[i]] += std::pow(lst[i] - sum_of_pos[pos[i]],2);
 	}
 	for(int i=0;i<20;i++){
@@ -117,9 +117,9 @@ int consistant_pos(int* lst, int* pos,  int len){
 	return position;
 }
 
-int total_lifted(int* weight, int* reps, int len){
+int total_lifted(py::list weight, py::list reps){
 	int total = 0;
-	for(int i=0;i<len;i++){
+	for(int i=0;i<weight.size();i++){
 		total += weight[i] * reps[i];
 	}
 	return total;
