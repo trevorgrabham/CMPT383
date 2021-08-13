@@ -9,6 +9,7 @@ import finalproject.c_funcs as c_funcs
 
 
 @app.route("/")
+@login_required
 def home():
     return render_template('index.html')
 
@@ -23,6 +24,7 @@ def signup():
         user = User(username=form.username.data, email=form.email.data, password=bcrypt.generate_password_hash(form.password.data).decode('utf-8'))
         db.session.add(user)
         db.session.commit()
+        login_user(user)
         flash('Account created for ' + form.username.data, 'success')
         return redirect(url_for('home'))
     return render_template('signup.html', title='Sign Up', form=form)  
@@ -65,7 +67,8 @@ def exercises():
     exerciseList = db.session.query(Exercise.name).\
     filter(Exercise.userId==current_user.id).\
     order_by(Exercise.name).\
-    distinct()
+    distinct().\
+    all()
     return render_template('exercises.html', title="Exercises", exerciseList=exerciseList)
 
 
@@ -87,6 +90,7 @@ def workout():
 
 
 @app.route("/logout")
+@login_required
 def logout():
     flash('Successfully logged out ' + current_user.username, 'success')
     logout_user()
@@ -96,6 +100,7 @@ def logout():
 
 
 @app.route("/addWorkout")
+@login_required
 def addWorkout():
     return render_template('addWorkout.html', title='Add Workout')
 
@@ -126,6 +131,7 @@ def getSuggestions():
 
 
 @app.route("/display")
+@login_required
 def display():
     title = request.args.get('name')
     res = db.session.query(Exercise).\
@@ -135,7 +141,3 @@ def display():
 
     days = [list(g) for k, g in groupby(res, attrgetter('date'))]
     return render_template('display.html', title=title, days=days)
-
-@app.route("/test")
-def test():
-    return render_template('index.html', title=c_funcs.min([1,2]))

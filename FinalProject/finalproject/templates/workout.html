@@ -1,38 +1,32 @@
 {% extends "defaultLayout.html" %}
 
 {% block content %}
-    <button id="addWorkoutBtn">Add Workout</button>
-    <div class="addWorkoutDiv"></div>
+{% if workouts| length != 0 %}
+    <div class="row">
     {%for i in range(workouts| length)%}
-        <h1>{{workouts[i][0][0].date}}</h1>
-        {%for j in range(workouts[i]| length)%}
-            <h3>{{workouts[i][j][0].name}}</h3>
-            {%for k in range(workouts[i][j]| length)%}
-                <h3>{{workouts[i][j][k].reps}}, {{workouts[i][j][k].weight}}</h3>
-                <br>
-            {%endfor%}
-        {%endfor%}
-        <br>
+        {% if i%2 != 0 %}
+            </div>
+            <div class="row">
+        {% endif %}
+        <div class="card mb-3 col-sm-4">
+            <div class="card-body">
+                <h5 class="card-title">{{workouts[i][0][0].date}}</h5>
+                {%for j in range(workouts[i]| length)%}
+                    <h6 class="card-subtitle mb-2 text-muted">{{workouts[i][j][0].name}}</h6>
+                    {%for k in range(workouts[i][j]| length)%}
+                        {% if workouts[i][j][k].weight != 0 %}
+                            <p class="car-text">{{workouts[i][j][k].weight}}lbs X {{workouts[i][j][k].reps}}</p>
+                        {% else %}
+                        <p class="car-text">body weight X {{workouts[i][j][k].reps}}</p>
+                        {% endif %}
+                    {%endfor%}
+                {%endfor%}
+            </div>
+        </div>
     {%endfor%}
-    <a id="testA" href="">Test me</a>
-    <!-- {{workouts}} -->
-
-    <script>
-        var addWorkoutBtn = document.getElementById("addWorkoutBtn");
-        var addWorkoutDiv = document.getElementById("addWorkoutDiv");
-
-        var addExerciseBtn = document.createElement("btn")
-        addExerciseBtn.setAttribute('id', 'addExerciseBtn');
-        addExerciseBtn.addEventListener('click', function(){
-            var name 
-            var weight
-            var reps
-        })
-
-        var addSetBtn = document.createElement("btn")
-        addSetBtn.setAttribute('id', 'addExerciseBtn');
-        addWorkoutBtn.addEventListener('click', function() {
-
-        });
-    </script>
+    </div>
+{% else %}
+    <h2 class="text-muted">Nothing to see here at the moment</h2>
+    <p class="text-muted">You can track your workouts by adding them <a href="{{url_for('addWorkout')}}">here</a></p>
+{% endif %}
 {% endblock content %}

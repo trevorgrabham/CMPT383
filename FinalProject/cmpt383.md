@@ -48,7 +48,7 @@ exercises tab, we can click any of the exercises, and see our progress to date.
 
 To make this more interesting, I would recommend signing into the test user account that
 I have created with the credentials:   
-`username: testuser`   
+`email: testuser@sfu.ca`   
 `password: cmpt383`   
 After signing into this account, we can see the workouts that were completed in the past 
 under the 'Workouts' tab, and we can see more detailed statistics on the exercises done
