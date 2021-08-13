@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC  -flto -shared  -o c_funcs.cpython-38-x86_64-linux-gnu.so CMakeFiles/c_funcs.dir/c_funcs.cpp.o 
+/usr/bin/c++ -fPIC   -shared  -o c_funcs.cpython-37m-x86_64-linux-gnu.so CMakeFiles/c_funcs.dir/c_funcs.cpp.o -flto 

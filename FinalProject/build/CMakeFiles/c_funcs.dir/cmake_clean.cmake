@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/c_funcs.dir/c_funcs.cpp.o"
-  "c_funcs.cpython-38-x86_64-linux-gnu.so"
   "c_funcs.pdb"
+  "c_funcs.cpython-37m-x86_64-linux-gnu.so"
 )
 
 # Per-language clean rules from dependency scanning.

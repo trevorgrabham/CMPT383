@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/treva/Desktop/SFU classes/CMPT383/FinalProject/pybind11
+# Install script for directory: /home/tgrabham/sfuhome/CMPT383/FinalProject/pybind11
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
