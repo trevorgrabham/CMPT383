@@ -14,7 +14,7 @@ int sum(int* lst, int len){
 }
 
 double avg(int* lst, int len){
-	return double(sum(lst, len))/count;
+	return double(sum(lst, len))/len;
 }
 
 int* max(int* lst, int len){
@@ -53,7 +53,7 @@ double std_dev(int* lst, int len){
 	for(int i=0;i<len;i++){
 		sqr_diff += std::pow(lst[i] - mean,2);
 	}
-	return (sqr_diff/len)^(0.5);
+	return pow(sqr_diff/len,0.5);
 }
 
 // based upon the average of whatever values are sent in (weight or reps)
@@ -63,6 +63,7 @@ int best_pos(int* lst, int* pos, int len){
 	int position = 0;
 	for(int i=0;i<20;i++){
 		sum_of_pos[i] = 0;
+	}
 	for(int i=0;i<len;i++){
 		sum_of_pos[pos[i]] += lst[i];
 		count_of_pos[pos[i]]++;
